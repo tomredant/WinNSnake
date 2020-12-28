@@ -4,7 +4,7 @@
 #include <Engine/Helpers/Utils.hpp>
 #include <Engine/Helpers/String.hpp>
 
-#include <ncurses.h>
+#include <curses.h>
 #include <string>
 #include <vector>
 

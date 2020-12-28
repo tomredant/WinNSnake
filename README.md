@@ -1,12 +1,8 @@
-# nsnake
+# WinNSnake
 
-Classic snake game on the terminal; made with C++ and ncurses.
+Classic snake game on the Windows terminal; made with C++ and curses. It is based on NSnake, to which it is for more than 99.9 percent identical. Only a few modifications had to be done to make it work for Windows.
 
-![menu](http://nsnake.alexdantas.net/img/arcade-menu.png)
-![menu](http://nsnake.alexdantas.net/img/small-maze.png)
-![menu](http://nsnake.alexdantas.net/img/large-maze-with-lots-of-fruits.png)
-
-`nsnake` is a clone of the classic snake game that we all used to
+`WinNSnake` is a clone of the classic snake game that we all used to
 play on our cellphones. You play this game on the terminal,
 with textual interface.
 
@@ -30,52 +26,39 @@ The default ones are:
 | p                 | Pauses/Unpauses the game   |
 | h                 | Show help during game      |
 
-All user settings are located at `~/.local/share/nsnake`.
+All user settings are located at `~/.local/share/nsnake`. (to be checked if this is still the case for WinSnake).
 
 ## Levels
 
 nSnake looks out for level files on `~/.local/share/nsnake/levels`. By default
 it installs stock levels on `/usr/share/games/nsnake/levels`, so make sure to
-copy them before playing.
+copy them before playing. (to be checked if this is still the case for WinSnake).
 
 Levels have a `.nsnake` extension and are simple text files.  The file
-format is very easy to edit; check out [the wiki][level_wiki] for a quick guide.
+format is very easy to edit; check out [the wiki][level_wiki] for a quick guide. (to be checked if this is still the case for WinSnake).
 
 ## Dependencies
 
-nSnake only depends on `ncurses`; it's used to show cute things on the terminal.
+WinNSnake only depends on `PDCurses`; it's used to show cute things on the terminal.
 
-Make sure you have the package *ncurses dev*. Note that it's _not_ the default
-that comes with your distro.
+Make sure you have downloaded and compiled PDCurses by means with its default settings.
 
-| Distro         | Installation command              |
-| -------------- | --------------------------------- |
-| Ubuntu/Debian  | `apt-get install libncurses5-dev` |
-| Fedora         | `yum install ncurses-devel`       |
-| Arch Linux     | _comes by default_                |
+## Installation
 
-If you know the means to install on other distros, [please tell me][issues].
-
-## Usage
-
+You may first have to make sure all path variables are set accordingly to make sure the toolchain and qmake executable is found.  Furthermore, edit the WinNSnake.pro file (last two lines of the file), pointing to the directory in which PDCurses is installed.
 Briefly, the following shell commands should configure,
-build and install this package on the default directories:
+and build this package:
 
+    $ qmake
     $ make
-    $ [sudo] make install
 
-If you want to test it before installing, do:
-
-    $ make run
-
-Then, it's simple:
-
-	$ man nsnake
-	$ nsnake
+Further reading on the version on which this is based: 
 
 Check file `INSTALL.md` for more info.
 
 ## Contact
+
+Here is a message from the original developer of NSnake:
 
 Hello there, I'm Alexandre Dantas (kure)!
 
@@ -112,6 +95,7 @@ Also, it's all over the web!
 * [Package on Slackware (SlackBuilds)](http://slackbuilds.org/repository/14.1/games/nSnake/)
 
 ## Credits
+I want to credit Mr. Alexandre Dantas. Here is a message from him, taken from the original NSnake project.
 
 Firstly, I'd like to thank you for playing this game.
 Hope you liked it!
@@ -159,6 +143,14 @@ I raise my hat to:
 
 ## License
 
+
+ WinNSnake is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ any later version.
+ 
+ nsnake, on which WinNSnake is based is also free software.
+ 
  nsnake - The classic snake game with ncurses.
  Copyright (C) 2011,2014  Alexandre Dantas
 
@@ -179,9 +171,6 @@ I raise my hat to:
  mailto:   eu@alexdantas.net
 
 [issues]:      https://github.com/alexdantas/nSnake/issues
-[home]:        http://nsnake.alexdantas.net/
-[news]:        http://alexdantas.net/stuff/posts/category/projects/nsnake/
-[rss]:         http://alexdantas.net/stuff/posts/category/projects/nsnake/feed/
 [github]:      https://github.com/alexdantas/nsnake
 [bitbucket]:   https://bitbucket.org/alexdantas/nsnake
 [sourceforge]: https://sourceforge.net/projects/nsnake/

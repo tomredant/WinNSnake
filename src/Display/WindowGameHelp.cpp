@@ -4,6 +4,9 @@
 #include <Engine/EngineGlobals.hpp>
 #include <Engine/InputManager.hpp>
 #include <Engine/Helpers/Utils.hpp>
+#include <Config/Globals.hpp>
+
+#define STR(x) #x
 
 WindowGameHelp::WindowGameHelp()
 {
@@ -103,8 +106,8 @@ void WindowGameHelp::run()
 			                        14, 10,
 			                        EngineGlobals::Theme::text);
 
-			this->windows[0]->print(Utils::String::split(" Settings and scores are stored at:\n"
-			                                             " `~/.local/share/nsnake/`", '\n'),
+            this->windows[0]->print(Utils::String::split(" Settings and scores are stored at:\n`"
+                                                         + Globals::Config::directory+ "`", '\n'),
 			                        0, 13,
 			                        EngineGlobals::Theme::text);
 		}
@@ -117,7 +120,7 @@ void WindowGameHelp::run()
 			                                             "|_| \\| _)_) |_| \\| /_/--\\ |_| \\ |_|__", '\n'),
 			                        0, 0, Colors::pair("blue", "default", true));
 
-			this->windows[1]->print(" v" VERSION "               (built " DATE ")",
+            this->windows[1]->print(" v" + std::string(STR(VERSION)) + "               (built " + std::string(STR(DATE)) + ")",
 			                        0, 3,
 			                        Colors::pair("green", "default", true));
 

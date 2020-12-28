@@ -267,23 +267,23 @@ void GameStateMainMenu::update()
 				// Before going to the Levels menu, we must check if
 				// the user has any levels on the level directory.
 				// If not, we should stay at the main menu.
-				if (BoardParser::listLevels().size() == 0)
-				{
-					Dialog::show("Sorry, it seems you have no levels.\n"
-					             "\n"
-					             "Please copy the default level files from\n"
-					             "`"  SYSTEM_LEVEL_DIR "/`\n"
-					             "to\n"
-					             "`" + BoardParser::directory + "`\n" +
-					             "\n"
-					             "You can also download more levels from the website:\n"
-					             "http://nsnake.alexdantas.net/", true);
-				}
-				else
-				{
-					this->layout->menu->setTitle("Level Select");
-					this->menuLevelsActivated = true;
-				}
+//				if (BoardParser::listLevels().size() == 0)
+//				{
+//					Dialog::show("Sorry, it seems you have no levels.\n"
+//					             "\n"
+//					             "Please copy the default level files from\n"
+//					             "`"  SYSTEM_LEVEL_DIR "/`\n"
+//					             "to\n"
+//					             "`" + BoardParser::directory + "`\n" +
+//					             "\n"
+//					             "You can also download more levels from the website:\n"
+//					             "http://nsnake.alexdantas.net/", true);
+//				}
+//				else
+//				{
+//					this->layout->menu->setTitle("Level Select");
+//					this->menuLevelsActivated = true;
+//				}
 				break;
 
 			case GAME_SETTINGS:

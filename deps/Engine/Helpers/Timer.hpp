@@ -1,5 +1,6 @@
 #ifndef TIMER_H_DEFINED
 #define TIMER_H_DEFINED
+typedef long suseconds_t;
 
 #include <sys/time.h>
 

@@ -7,14 +7,15 @@
 #include <Entities/BoardParser.hpp>
 #include <Entities/ScoreFile.hpp>
 
-#include <ncurses.h>
+#include <curses.h>
 #include <iostream>
 #include <fstream>
+#define STR(x) #x
 
 // VERSION is formatted like "0.0.1" - i'm skipping the dots
-char Globals::version[3] = { VERSION[0],
-                             VERSION[2],
-                             VERSION[4] };
+char Globals::version[3] = { std::string(STR(VERSION))[0],
+                             std::string(STR(VERSION))[2],
+                             std::string(STR(VERSION))[4] };
 
 //  __    ___   _      ____  _   __
 // / /`  / / \ | |\ | | |_  | | / /`_
@@ -82,14 +83,13 @@ void Globals::init()
 
 	Globals::Config::directory = (Utils::File::getHome() +
 	                              ".local/share/" +
-	                              PACKAGE + "/");
+                                  std::string(STR(PACKAGE)) + "/");
 
 	if (Utils::String::front(Globals::Config::directory) != '/')
 	{
 		// We couldn't get user's home directory,
 		// so let's fallback to `/tmp/.local/share...`
-		Globals::Config::directory = ("/tmp/" +
-		                              Globals::Config::directory);
+        Globals::Config::directory = (getenv("TMP"));
 	}
 
 	Globals::Config::file = (Globals::Config::directory +

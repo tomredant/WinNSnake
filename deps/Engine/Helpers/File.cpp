@@ -35,11 +35,11 @@ void Utils::File::mkdir_p(std::string path)
 		if (*p == '/')
 		{
 			*p = '\0';
-			mkdir(tmp.c_str(), S_IRWXU);
+            mkdir(tmp.c_str());
 			*p = '/';
 		}
 	}
-	mkdir(tmp.c_str(), S_IRWXU);
+    mkdir(tmp.c_str());
 }
 void Utils::File::rm_rf(std::string path)
 {
@@ -161,10 +161,10 @@ std::vector<std::string> Utils::File::ls(std::string path)
 }
 std::string Utils::File::getHome()
 {
-	if (! getenv("HOME"))
+    if (! getenv("USERPROFILE "))
 		return "";
 
-	std::string s(getenv("HOME"));
+    std::string s(getenv("USERPROFILE "));
 	if (Utils::String::back(s) != '/')
 		s.push_back('/');
 

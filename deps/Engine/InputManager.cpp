@@ -1,7 +1,7 @@
 #include <Engine/InputManager.hpp>
 #include <Engine/Graphics/Ncurses.hpp>
 
-#include <ncurses.h>
+#include <curses.h>
 
 int InputManager::pressedKey = ERR; // Starting with blank value
 std::map<std::string, int> InputManager::binds;

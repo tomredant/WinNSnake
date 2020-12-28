@@ -1,6 +1,7 @@
 #include <Display/Layouts/LayoutGame.hpp>
 #include <Engine/EngineGlobals.hpp>
 #include <Engine/Helpers/Utils.hpp>
+#define STR(x) #x
 
 LayoutGame::LayoutGame(Game* game, int width, int height):
 	Layout(width, height),
@@ -21,7 +22,7 @@ LayoutGame::~LayoutGame()
 void LayoutGame::windowsInit()
 {
 	Layout::windowsInit();
-	this->main->setTitle("nsnake " VERSION);
+    this->main->setTitle("nsnake " + std::string(STR(VERSION)));
 
 	if (this->game->currentScore->level.empty())
 		this->main->setTitle("Arcade Mode", Window::TOP_RIGHT);
