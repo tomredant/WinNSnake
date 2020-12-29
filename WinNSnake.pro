@@ -1,6 +1,6 @@
-CONFIG -= qt
 TARGET = WinNSnake
 CONFIG+=console
+TRANSLATIONS+= winnsnake_nl.ts
 CONFIG+=static
 QMAKE_LFLAGS+=-static -static-libgcc -static-libstdc++ -lstdc++
 DEFINES+=STATIC
@@ -76,3 +76,6 @@ SUBDIRS += src/
 INCLUDEPATH += src/
 INCLUDEPATH += D:/lib/PDCurses/
 LIBS += -LD:/lib/PDCurses/wincon -lpdcurses
+
+RESOURCES += \
+    winnsnake.qrc

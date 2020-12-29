@@ -1,7 +1,7 @@
 #include <Engine/Graphics/Widgets/Menu/MenuItem/MenuItemCheckbox.hpp>
 #include <Engine/EngineGlobals.hpp>
 #include <Engine/InputManager.hpp>
-
+#include <QObject>
 MenuItemCheckbox::MenuItemCheckbox(std::string label, int id, bool initial):
 	MenuItem(label, id),
 	checked(initial)
@@ -28,13 +28,13 @@ void MenuItemCheckbox::draw(Window* window, int x, int y, int width, bool hilite
 	               EngineGlobals::Theme::hilite_text:
 	               EngineGlobals::Theme::text));
 
-	window->print("ON", posx - 7, y, ((this->checked) ?
+    window->print(QObject::tr("ON").toStdString(), posx - 7, y, ((this->checked) ?
 	                                  EngineGlobals::Theme::hilite_text:
 	                                  EngineGlobals::Theme::text));
 
 	window->print("|", posx - 5, y, EngineGlobals::Theme::text);
 
-	window->print("OFF", posx - 4, y, ((this->checked) ?
+    window->print(QObject::tr("OFF").toStdString(), posx - 4, y, ((this->checked) ?
 	                                   EngineGlobals::Theme::text :
 	                                   EngineGlobals::Theme::hilite_text));
 

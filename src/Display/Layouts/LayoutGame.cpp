@@ -2,7 +2,7 @@
 #include <Engine/EngineGlobals.hpp>
 #include <Engine/Helpers/Utils.hpp>
 #define STR(x) #x
-
+#include <QObject>
 LayoutGame::LayoutGame(Game* game, int width, int height):
 	Layout(width, height),
 	game(game),
@@ -22,12 +22,12 @@ LayoutGame::~LayoutGame()
 void LayoutGame::windowsInit()
 {
 	Layout::windowsInit();
-    this->main->setTitle("nsnake " + std::string(STR(VERSION)));
+    this->main->setTitle("WinNSnake " + std::string(STR(VERSION)));
 
 	if (this->game->currentScore->level.empty())
-		this->main->setTitle("Arcade Mode", Window::TOP_RIGHT);
+        this->main->setTitle(QObject::tr("Arcade Mode").toStdString(), Window::TOP_RIGHT);
 	else
-		this->main->setTitle("Level " + this->game->board->getMetadata("name"), Window::TOP_RIGHT);
+        this->main->setTitle(QObject::tr("Level").toStdString() + " " + this->game->board->getMetadata("name"), Window::TOP_RIGHT);
 
 	// Leftmost window
 	this->gamewin = new Window(this->main,
@@ -49,7 +49,7 @@ void LayoutGame::windowsInit()
 	                         this->main->getW() / 2,
 	                         7);
 
-	this->pause->setTitle("Paused");
+    this->pause->setTitle(QObject::tr("Paused").toStdString());
 
 	// Le help window.
 	this->help = new Window(this->main,
@@ -58,7 +58,7 @@ void LayoutGame::windowsInit()
 	                        this->main->getW() / 2,
 	                        this->main->getH() / 2);
 
-	this->help->setTitle("Help");
+    this->help->setTitle(QObject::tr("Help").toStdString());
 
 	this->helpWindows = new WindowGameHelp();
 }
@@ -124,15 +124,15 @@ void LayoutGame::draw(Menu* menu)
 
 	ColorPair hilite = EngineGlobals::Theme::hilite_text;
 
-	this->info->print("Hi-Score", 0, 0, hilite);
-	this->info->print("Score",    this->info->getW()/3, 0, hilite);
-	this->info->print("Speed",    this->info->getW()/3 * 2, 0, hilite);
+    this->info->print(QObject::tr("Hi-Score").toStdString(), 0, 0, hilite);
+    this->info->print(QObject::tr("Score").toStdString(),    this->info->getW()/3, 0, hilite);
+    this->info->print(QObject::tr("Speed").toStdString(),    this->info->getW()/3 * 2, 0, hilite);
 
 	if (this->game->scores->highScore)
 	{
 		std::string points = Utils::String::toString(this->game->scores->highScore->points);
 
-		this->info->print(points, 9, 0, EngineGlobals::Theme::text);
+        this->info->print(points, 10, 0, EngineGlobals::Theme::text);
 	}
 
 	std::string points = Utils::String::toString(this->game->currentScore->points);

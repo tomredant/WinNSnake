@@ -8,7 +8,7 @@
 
 #include <vector>
 #include <algorithm>
-
+#include <QObject>
 void Dialog::show(std::string message, bool pressAnyKey)
 {
 	std::vector<std::string> message_lines = Utils::String::split(message, '\n');
@@ -66,15 +66,15 @@ bool Dialog::askBool(std::string question, std::string title, bool default_value
 	Menu menu(1, 2, question.size() + 10, 2);
 
 	std::vector<std::string> options;
-	options.push_back("Yes");
-	options.push_back("No");
+    options.push_back(QObject::tr("Yes").toStdString());
+    options.push_back(QObject::tr("No").toStdString());
 
 	MenuItemTextlist* list = new MenuItemTextlist(question,
 	                                              0,
 	                                              options,
 	                                              (default_value ?
-	                                               "Yes" :
-	                                               "No"));
+                                                   QObject::tr("Yes").toStdString() :
+                                                   QObject::tr("No").toStdString()));
 	menu.add(list);
 
 	while (true)
@@ -99,7 +99,7 @@ bool Dialog::askBool(std::string question, std::string title, bool default_value
 		    InputManager::isPressed(KEY_ENTER))
 		{
 			std::string str(menu.getString(0));
-			return (str == "Yes");
+            return (str == QObject::tr("Yes").toStdString());
 		}
 	}
 

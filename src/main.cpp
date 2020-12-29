@@ -5,9 +5,17 @@
 #include <Config/Globals.hpp>
 #include <Config/Arguments.hpp>
 #include <States/GameStateMainMenu.hpp>
-
+#include <QTranslator>
+#include <QCoreApplication>
 int main(int argc, char *argv[])
 {
+
+    QCoreApplication a(argc, argv);
+    QTranslator *translator = new QTranslator();
+    QString language = "nl";
+    QString translatorFile =(":/winnsnake_" + language + ".qm");
+    translator->load(translatorFile);
+    a.installTranslator(translator);
 	try
 	{
 		// Settings
@@ -37,6 +45,8 @@ int main(int argc, char *argv[])
 		Ncurses::exit();
 		return 666;
 	}
-	return 0;
+
+
+    return a.exec();
 }
 

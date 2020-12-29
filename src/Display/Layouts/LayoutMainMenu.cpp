@@ -8,9 +8,8 @@
 #include <Display/Animations/AnimationFire.hpp>
 #include <Display/Animations/AnimationWater.hpp>
 #include <Display/Animations/AnimationGameOfLife.hpp>
-
 #include <iostream>
-
+#include <QObject>
 LayoutMainMenu::LayoutMainMenu(int width, int height, GameStateMainMenu* state):
 	Layout(width, height),
 	state(state),
@@ -40,7 +39,7 @@ void LayoutMainMenu::windowsInit()
 	                        55, 0,
 	                        24, WINDOW_FILL);
 
-	this->menu->setTitle("Main Menu");
+    this->menu->setTitle(QObject::tr("Main Menu").toStdString());
 	this->menu->refresh();
 
 	// ANIMATION

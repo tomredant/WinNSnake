@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="winnsnake_nl.qm">winnsnake_nl.qm</file>
+    </qresource>
+</RCC>

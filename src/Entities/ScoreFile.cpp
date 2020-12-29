@@ -77,14 +77,14 @@ void ScoreFile::eraseAll()
 	// 2. Lists all files under the score dir and erase
 	//    the ones ending with a score extension
 
-	Utils::File::rm_f(Globals::Config::scoresFile);
+//    Utils::File::rm_f(Globals::Config::scoresFile);
 
-	std::vector<std::string> files = Utils::File::ls(ScoreFile::directory);
+//    std::vector<std::string> files = Utils::File::ls(ScoreFile::directory);
 
-	for (size_t i = 0; i < files.size(); i++)
+//    for (size_t i = 0; i < files.size(); i++)
 
-		if (Utils::File::extension(files[i]) == ScoreFile::extension)
-			Utils::File::rm_f(files[i]);
+//        if (Utils::File::extension(files[i]) == ScoreFile::extension)
+//            Utils::File::rm_f(files[i]);
 }
 
 

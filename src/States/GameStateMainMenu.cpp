@@ -10,7 +10,7 @@
 
 #include <Engine/Flow/StateManager.hpp>
 #include <States/GameStateGame.hpp>
-
+#include <QObject>
 enum NamesToEasilyIdentifyTheMenuItemsInsteadOfRawNumbers
 {
 	// Main Menu
@@ -112,7 +112,7 @@ void GameStateMainMenu::update()
 			switch (this->menuLevels->currentID())
 			{
 			case GO_BACK:
-				this->layout->menu->setTitle("Main Menu");
+                this->layout->menu->setTitle(QObject::tr("Main Menu").toStdString());
 				this->menuLevelsActivated = false;
 				break;
 
@@ -147,18 +147,18 @@ void GameStateMainMenu::update()
 			{
 			case ERASE_HIGH_SCORES:
 			{
-				bool answer = Dialog::askBool("Are you sure?");
+                bool answer = Dialog::askBool(QObject::tr("Are you sure?").toStdString());
 
 				if (answer)
 				{
 					ScoreFile::eraseAll();
-					Dialog::show("All high scores erased!", true);
+                    Dialog::show(QObject::tr("All high scores erased!").toStdString(), true);
 				}
 			}
 				break;
 
 			case GO_BACK:
-				this->layout->menu->setTitle("Main Menu");
+                this->layout->menu->setTitle(QObject::tr("Main Menu").toStdString());
 				this->menuGameSettingsActivated = false;
 				break;
 			}
@@ -174,7 +174,7 @@ void GameStateMainMenu::update()
 			switch(this->menuGUIOptions->currentID())
 			{
 			case GO_BACK:
-				this->layout->menu->setTitle("Main Menu");
+                this->layout->menu->setTitle(QObject::tr("Main Menu").toStdString());
 				this->menuGUIOptionsActivated = false;
 
 				// Redrawing the screen to refresh settings
@@ -287,17 +287,17 @@ void GameStateMainMenu::update()
 				break;
 
 			case GAME_SETTINGS:
-				this->layout->menu->setTitle("Game Settings");
+                this->layout->menu->setTitle(QObject::tr("Game Settings").toStdString());
 				this->menuGameSettingsActivated = true;
 				break;
 
 			case GUI_OPTIONS:
-				this->layout->menu->setTitle("GUI Options");
+                this->layout->menu->setTitle(QObject::tr("GUI Options").toStdString());
 				this->menuGUIOptionsActivated = true;
 				break;
 
 			case CONTROLS:
-				this->layout->menu->setTitle("Controls");
+                this->layout->menu->setTitle(QObject::tr("Controls").toStdString());
 				this->menuControlsActivated = true;
 				break;
 
@@ -346,25 +346,25 @@ void GameStateMainMenu::createMainMenu()
 
 	MenuItem* item;
 
-	item = new MenuItem("Arcade Mode", ARCADE);
+    item = new MenuItem(QObject::tr("Arcade Mode").toStdString(), ARCADE);
 	menu->add(item);
 
-	item = new MenuItem("Level Select", LEVELS);
+//    item = new MenuItem(QObject::tr("Level Select").toStdString(), LEVELS);
+//	menu->add(item);
+
+    item = new MenuItem(QObject::tr("Game Settings").toStdString(), GAME_SETTINGS);
 	menu->add(item);
 
-	item = new MenuItem("Game Settings", GAME_SETTINGS);
+    item = new MenuItem(QObject::tr("GUI Options").toStdString(), GUI_OPTIONS);
 	menu->add(item);
 
-	item = new MenuItem("GUI Options", GUI_OPTIONS);
+    item = new MenuItem(QObject::tr("Controls").toStdString(), CONTROLS);
 	menu->add(item);
 
-	item = new MenuItem("Controls", CONTROLS);
+    item = new MenuItem(QObject::tr("Help").toStdString(), HELP);
 	menu->add(item);
 
-	item = new MenuItem("Help", HELP);
-	menu->add(item);
-
-	item = new MenuItem("Quit", QUIT_GAME);
+    item = new MenuItem(QObject::tr("Quit").toStdString(), QUIT_GAME);
 	menu->add(item);
 }
 void GameStateMainMenu::createLevelsMenu()
@@ -380,10 +380,10 @@ void GameStateMainMenu::createLevelsMenu()
 
 	std::vector<std::string> levels = BoardParser::listLevels();
 
-	item = new MenuItem("Back", GO_BACK);
+    item = new MenuItem(QObject::tr("Back").toStdString(), GO_BACK);
 	menuLevels->add(item);
 
-	item = new MenuItem("Random", RANDOM);
+    item = new MenuItem(QObject::tr("Random").toStdString(), RANDOM);
 	menuLevels->add(item);
 
 	menuLevels->addBlank();
@@ -405,25 +405,25 @@ void GameStateMainMenu::createGameSettingsMenu()
 
 	MenuItem* item;
 
-	item = new MenuItem("Back", GO_BACK);
+    item = new MenuItem(QObject::tr("Back").toStdString(), GO_BACK);
 	menuGameSettings->add(item);
 
 	menuGameSettings->addBlank();
 
 	MenuItemNumberbox* number;
 
-	number = new MenuItemNumberbox("Starting Speed", STARTING_SPEED, 1, 10, Globals::Game::starting_speed);
+    number = new MenuItemNumberbox(QObject::tr("Starting Speed").toStdString(), STARTING_SPEED, 1, 10, Globals::Game::starting_speed);
 	menuGameSettings->add(number);
 
-	number = new MenuItemNumberbox("Fruits", FRUITS, 1, 99, Globals::Game::fruits_at_once);
+    number = new MenuItemNumberbox(QObject::tr("Fruits").toStdString(), FRUITS, 1, 99, Globals::Game::fruits_at_once);
 	menuGameSettings->add(number);
 
 	MenuItemCheckbox* check;
 
-	check = new MenuItemCheckbox("Teleport", TELEPORT, Globals::Game::teleport);
+    check = new MenuItemCheckbox(QObject::tr("Teleport").toStdString(), TELEPORT, Globals::Game::teleport);
 	menuGameSettings->add(check);
 
-	check = new MenuItemCheckbox("Random Walls", RANDOM_WALLS, Globals::Game::random_walls);
+    check = new MenuItemCheckbox(QObject::tr("Random Walls").toStdString(), RANDOM_WALLS, Globals::Game::random_walls);
 	menuGameSettings->add(check);
 
 	// The board size
@@ -444,7 +444,7 @@ void GameStateMainMenu::createGameSettingsMenu()
 	default:                    defaullt = "Large";  break;
 	}
 
-	list = new MenuItemTextlist("Maze size",
+    list = new MenuItemTextlist(QObject::tr("Maze size").toStdString(),
 	                            BOARD_SIZE,
 	                            options,
 	                            defaullt);
@@ -453,26 +453,26 @@ void GameStateMainMenu::createGameSettingsMenu()
 
 	menuGameSettings->addBlank();
 
-	number = new MenuItemNumberbox("Scroll Delay(ms)", SCROLL_DELAY, 100, 5000, Globals::Game::board_scroll_delay, 100);
+    number = new MenuItemNumberbox(QObject::tr("Scroll Delay(ms)").toStdString(), SCROLL_DELAY, 100, 5000, Globals::Game::board_scroll_delay, 100);
 	menuGameSettings->add(number);
 
-	check = new MenuItemCheckbox("Scroll Up", SCROLL_UP, Globals::Game::board_scroll_up);
+    check = new MenuItemCheckbox(QObject::tr("Scroll Up").toStdString(), SCROLL_UP, Globals::Game::board_scroll_up);
 	menuGameSettings->add(check);
 
-	check = new MenuItemCheckbox("Scroll Down", SCROLL_DOWN, Globals::Game::board_scroll_down);
+    check = new MenuItemCheckbox(QObject::tr("Scroll Down").toStdString(), SCROLL_DOWN, Globals::Game::board_scroll_down);
 	menuGameSettings->add(check);
 
-	check = new MenuItemCheckbox("Scroll Left", SCROLL_LEFT, Globals::Game::board_scroll_left);
+    check = new MenuItemCheckbox(QObject::tr("Scroll Left").toStdString(), SCROLL_LEFT, Globals::Game::board_scroll_left);
 	menuGameSettings->add(check);
 
-	check = new MenuItemCheckbox("Scroll Right", SCROLL_RIGHT, Globals::Game::board_scroll_right);
+    check = new MenuItemCheckbox(QObject::tr("Scroll Right").toStdString(), SCROLL_RIGHT, Globals::Game::board_scroll_right);
 	menuGameSettings->add(check);
 
-	menuGameSettings->addBlank();
-
-	item = new MenuItem("Erase High Scores",
-	                    ERASE_HIGH_SCORES);
-	menuGameSettings->add(item);
+//	menuGameSettings->addBlank();
+//
+//    item = new MenuItem(QObject::tr("Erase High Scores").toStdString(),
+//	                    ERASE_HIGH_SCORES);
+//	menuGameSettings->add(item);
 }
 void GameStateMainMenu::createGUIOptionsMenu()
 {
@@ -485,34 +485,34 @@ void GameStateMainMenu::createGUIOptionsMenu()
 
 	MenuItem* item;
 
-	item = new MenuItem("Back", GO_BACK);
+    item = new MenuItem(QObject::tr("Back").toStdString(), GO_BACK);
 	menuGUIOptions->add(item);
 
 	menuGUIOptions->addBlank();
 
 	MenuItemCheckbox* check;
 
-	check = new MenuItemCheckbox("Show Borders",
+    check = new MenuItemCheckbox(QObject::tr("Show Borders").toStdString(),
 	                             SHOW_BORDERS,
 	                             EngineGlobals::Screen::show_borders);
 	menuGUIOptions->add(check);
 
-	check = new MenuItemCheckbox("Fancy Borders",
+    check = new MenuItemCheckbox(QObject::tr("Fancy Borders").toStdString(),
 	                             FANCY_BORDERS,
 	                             EngineGlobals::Screen::fancy_borders);
 	menuGUIOptions->add(check);
 
-	check = new MenuItemCheckbox("Outer Border",
+    check = new MenuItemCheckbox(QObject::tr("Outer Border").toStdString(),
 	                             OUTER_BORDER,
 	                             EngineGlobals::Screen::outer_border);
 	menuGUIOptions->add(check);
 
-	check = new MenuItemCheckbox("Center Horizontal",
+    check = new MenuItemCheckbox(QObject::tr("Center Horizontal").toStdString(),
 	                             CENTER_HORIZONTAL,
 	                             EngineGlobals::Screen::center_horizontally);
 	menuGUIOptions->add(check);
 
-	check = new MenuItemCheckbox("Center Vertical",
+    check = new MenuItemCheckbox(QObject::tr("Center Vertical").toStdString(),
 	                             CENTER_VERTICAL,
 	                             EngineGlobals::Screen::center_vertically);
 	menuGUIOptions->add(check);
@@ -528,7 +528,7 @@ void GameStateMainMenu::createControlsMenu()
 
 	MenuItem* item;
 
-	item = new MenuItem("Back", GO_BACK);
+    item = new MenuItem(QObject::tr("Back").toStdString(), GO_BACK);
 	menuControls->add(item);
 
 	menuControls->addBlank();
@@ -537,36 +537,36 @@ void GameStateMainMenu::createControlsMenu()
 	std::string str;
 
 	str = InputManager::keyToString(InputManager::getBind("up"));
-	label = new MenuItemLabel("Key up", CONTROLS_KEY_UP, str);
+    label = new MenuItemLabel(QObject::tr("Key up").toStdString(), CONTROLS_KEY_UP, str);
 	menuControls->add(label);
 
 	str = InputManager::keyToString(InputManager::getBind("down"));
-	label = new MenuItemLabel("Key down", CONTROLS_KEY_DOWN, str);
+    label = new MenuItemLabel(QObject::tr("Key down").toStdString(), CONTROLS_KEY_DOWN, str);
 	menuControls->add(label);
 
 	str = InputManager::keyToString(InputManager::getBind("left"));
-	label = new MenuItemLabel("Key left", CONTROLS_KEY_LEFT, str);
+    label = new MenuItemLabel(QObject::tr("Key left").toStdString(), CONTROLS_KEY_LEFT, str);
 	menuControls->add(label);
 
 	str = InputManager::keyToString(InputManager::getBind("right"));
-	label = new MenuItemLabel("Key right", CONTROLS_KEY_RIGHT, str);
+    label = new MenuItemLabel(QObject::tr("Key right").toStdString(), CONTROLS_KEY_RIGHT, str);
 	menuControls->add(label);
 
 	str = InputManager::keyToString(InputManager::getBind("pause"));
-	label = new MenuItemLabel("Key pause", CONTROLS_KEY_PAUSE, str);
+    label = new MenuItemLabel(QObject::tr("Key pause").toStdString(), CONTROLS_KEY_PAUSE, str);
 	menuControls->add(label);
 
 	str = InputManager::keyToString(InputManager::getBind("help"));
-	label = new MenuItemLabel("Key help", CONTROLS_KEY_HELP, str);
+    label = new MenuItemLabel(QObject::tr("Key help").toStdString(), CONTROLS_KEY_HELP, str);
 	menuControls->add(label);
 
 	str = InputManager::keyToString(InputManager::getBind("quit"));
-	label = new MenuItemLabel("Key quit", CONTROLS_KEY_QUIT, str);
+    label = new MenuItemLabel(QObject::tr("Key quit").toStdString(), CONTROLS_KEY_QUIT, str);
 	menuControls->add(label);
 
 	menuControls->addBlank();
 
-	item = new MenuItem("Reset to Defaults", CONTROLS_DEFAULT);
+    item = new MenuItem(QObject::tr("Reset to Defaults").toStdString(), CONTROLS_DEFAULT);
 	menuControls->add(item);
 }
 void GameStateMainMenu::saveSettingsMenuGUIOptions()

@@ -5,8 +5,8 @@
 #include <Engine/InputManager.hpp>
 #include <Engine/Helpers/Utils.hpp>
 #include <Config/Globals.hpp>
-
 #define STR(x) #x
+#include <QObject>
 
 WindowGameHelp::WindowGameHelp()
 {
@@ -41,8 +41,8 @@ void WindowGameHelp::run()
 		this->windows[activatedIndex]->clear();
 
 		this->main->print(((activatedIndex == 0) ?
-		                   "(Help)" :
-		                   " Help "),
+                           "(" + QObject::tr("Help").toStdString() + ")" :
+                           " " + QObject::tr("Help").toStdString() + " "),
 		                  2,
 		                  0,
 		                  ((activatedIndex == 0) ?
@@ -50,8 +50,8 @@ void WindowGameHelp::run()
 		                   EngineGlobals::Theme::hilite_text));
 
 		this->main->print(((activatedIndex == 1) ?
-		                   "(Credits)" :
-		                   " Credits "),
+                           "(" + QObject::tr("Credits").toStdString() + ")" :
+                           " " + QObject::tr("Credits").toStdString() + " "),
 		                  12,
 		                  0,
 		                  ((activatedIndex == 1) ?
@@ -68,17 +68,17 @@ void WindowGameHelp::run()
 		// Help Window
 		if (activatedIndex == 0)
 		{
-			this->windows[0]->print("In-game controls:\n",
+            this->windows[0]->print(QObject::tr("In-game controls").toStdString() + ":\n",
 			                        0, 0,
 			                        EngineGlobals::Theme::hilite_text);
 
-			this->windows[0]->print(Utils::String::split("Move up\n"
-			                                             "Move down\n"
-			                                             "Move left\n"
-			                                             "Move right\n"
-			                                             "Pause game\n"
-			                                             "Quit anytime\n"
-			                                             "Show help", '\n'),
+            this->windows[0]->print(Utils::String::split(QObject::tr("Move up").toStdString() + "\n" +
+                                                         QObject::tr("Move down").toStdString() + "\n" +
+                                                         QObject::tr("Move left").toStdString() + "\n" +
+                                                         QObject::tr("Move right").toStdString() + "\n" +
+                                                         QObject::tr("Pause game").toStdString() + "\n" +
+                                                         QObject::tr("Quit anytime").toStdString() + "\n" +
+                                                         QObject::tr("Show help").toStdString(), '\n'),
 			                        1, 1,
 			                        EngineGlobals::Theme::hilite_text);
 
@@ -96,17 +96,17 @@ void WindowGameHelp::run()
 			                        0, 9,
 			                        EngineGlobals::Theme::hilite_text);
 
-			this->windows[0]->print(Utils::String::split("First item\n"
-			                                             "Last item", '\n'),
+            this->windows[0]->print(Utils::String::split(QObject::tr("First item").toStdString() + "\n" +
+                                                         QObject::tr("Last item").toStdString(), '\n'),
 			                        1, 10,
 			                        EngineGlobals::Theme::hilite_text);
 
-			this->windows[0]->print(Utils::String::split("page up\n"
-			                                             "page down", '\n'),
+            this->windows[0]->print(Utils::String::split(QObject::tr("page up").toStdString() + "\n" +
+                                                         QObject::tr("page down").toStdString(), '\n'),
 			                        14, 10,
 			                        EngineGlobals::Theme::text);
 
-            this->windows[0]->print(Utils::String::split(" Settings and scores are stored at:\n`"
+            this->windows[0]->print(Utils::String::split(" " + QObject::tr("Settings and scores are stored at:").toStdString() + "\n`"
                                                          + Globals::Config::directory+ "`", '\n'),
 			                        0, 13,
 			                        EngineGlobals::Theme::text);
@@ -124,16 +124,14 @@ void WindowGameHelp::run()
 			                        0, 3,
 			                        Colors::pair("green", "default", true));
 
-			this->windows[1]->print(Utils::String::split("Try `nsnake --help` and `man nsnake`\n"
+            this->windows[1]->print(Utils::String::split(QObject::tr("Try `WinNSnake.exe --help`\n"
 			                                             "\n"
-			                                             "Game made by Alexandre Dantas,\n"
+                                                         "Original Game made by Alexandre Dantas,\n"
 			                                             "contact him at <eu@alexdantas.net>\n"
-			                                             "Thanks for playing this game :)\n"
+                                                         "Dutch translation and Windows version by Tom Redant\n"
 			                                             "\n"
-			                                             "Homepage:\n"
-			                                             " http://nsnake.alexdantas.net/\n"
-			                                             "Source Code:\n"
-			                                             " https://github.com/alexdantas/nsnake/", '\n'),
+                                                         "Source Code:\n"
+                                                         " https://github.com/tomredant/nsnake/").toStdString(), '\n'),
 			                        0, 5, EngineGlobals::Theme::text);
 		}
 
