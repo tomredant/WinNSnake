@@ -8,7 +8,7 @@
 
 #include <Engine/Flow/StateManager.hpp>
 #include <States/GameStateMainMenu.hpp>
-
+#include <QObject>
 GameStateGame::GameStateGame():
 	game(NULL),
 	willQuit(false)
@@ -62,7 +62,7 @@ void GameStateGame::update()
 
 		this->game->draw();
 
-		if (Dialog::askBool("Retry?", "Game Over", true))
+        if (Dialog::askBool(QObject::tr("Retry?").toStdString(), QObject::tr("Game Over").toStdString(), true))
 			this->load(); // restart the game
 		else
 			StateManager::change(new GameStateMainMenu());

@@ -65,7 +65,7 @@
     </message>
     <message>
         <source>Random Walls</source>
-        <translation>Willekeurige muren</translation>
+        <translation>Blokjes</translation>
     </message>
     <message>
         <source>ON</source>
@@ -268,6 +268,14 @@ Bron Code:
     <message>
         <source>No</source>
         <translation>Nee</translation>
+    </message>
+    <message>
+        <source>Retry?</source>
+        <translation>Opnieuw?</translation>
+    </message>
+    <message>
+        <source>Game Over</source>
+        <translation>Spel afgelopen</translation>
     </message>
 </context>
 </TS>
