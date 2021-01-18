@@ -7,10 +7,10 @@
 #include <Config/Globals.hpp>
 #define STR(x) #x
 #include <QObject>
-
+#include "showlicense.h"
 WindowGameHelp::WindowGameHelp()
 {
-	int width  = 40;
+    int width  = 40;
 	int height = 17;
 
 	int windowx = Layout::screenWidth/2  - width/2;
@@ -68,6 +68,7 @@ void WindowGameHelp::run()
 		// Help Window
 		if (activatedIndex == 0)
 		{
+            m_licenseDialogShown = false;
             this->windows[0]->print(QObject::tr("In-game controls").toStdString() + ":\n",
 			                        0, 0,
 			                        EngineGlobals::Theme::hilite_text);
@@ -115,6 +116,13 @@ void WindowGameHelp::run()
 		// Credits
 		else if (activatedIndex == 1)
 		{
+            refreshLicenseDialog();
+            if(!m_licenseDialogShown) {
+                std::vector<std::string> libsToShow;
+                libsToShow.push_back("Qt5.15.3");
+                showLicenseDialog(libsToShow);
+                m_licenseDialogShown = true;
+            }
 			this->windows[1]->print(Utils::String::split(" _      __   _       __    _     ____ \n"
 			                                             "| |\\ | ( (` | |\\ |  / /\\  | |_/ | |_  \n"
 			                                             "|_| \\| _)_) |_| \\| /_/--\\ |_| \\ |_|__", '\n'),
@@ -124,14 +132,13 @@ void WindowGameHelp::run()
 			                        0, 3,
 			                        Colors::pair("green", "default", true));
 
-            this->windows[1]->print(Utils::String::split(QObject::tr("Try `WinNSnake.exe --help`\n"
-			                                             "\n"
-                                                         "Original Game made by Alexandre Dantas,\n"
+            this->windows[1]->print(Utils::String::split((QObject::tr("Try `WinNSnake.exe --help`\n"
+                                                         "\n") + QObject::tr("Original Game made by Alexandre Dantas,\n"
 			                                             "contact him at <eu@alexdantas.net>\n"
                                                          "Dutch translation and Windows version by Tom Redant\n"
 			                                             "\n"
                                                          "Source Code:\n"
-                                                         " https://github.com/tomredant/nsnake/").toStdString(), '\n'),
+                                                         " https://github.com/tomredant/WinNSnake/")).toStdString(), '\n'),
 			                        0, 5, EngineGlobals::Theme::text);
 		}
 

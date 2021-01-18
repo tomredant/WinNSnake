@@ -227,7 +227,7 @@ Dutch translation and Windows version by Tom Redant
 
 Source Code:
  https://github.com/tomredant/nsnake/</source>
-        <translation>Probeer `WinNSnake.exe --help`
+        <translation type="obsolete">Probeer `WinNSnake.exe --help`
 
 Origineel spelletje gemaakt door 
 Alexandre Dantas,
@@ -235,7 +235,7 @@ Contacteer hem op &lt;eu@alexdantas.net&gt;
 Nederlanstalige versie en 
 Windowsversie door Tom Redant.
 Bron Code:
- https://github.com/tomredant/nsnake/</translation>
+ https://github.com/tomredant/WinNSnake/</translation>
     </message>
     <message>
         <source>Level</source>
@@ -276,6 +276,48 @@ Bron Code:
     <message>
         <source>Game Over</source>
         <translation>Spel afgelopen</translation>
+    </message>
+    <message>
+        <source>Try `WinNSnake.exe --help`
+
+Original Game made by Alexandre Dantas,
+contact him at &lt;eu@alexdantas.net&gt;
+Dutch translation and Windows version by Tom Redant
+
+Source Code:
+ https://github.com/tomredant/WinNSnake/</source>
+        <translation type="vanished">Probeer `WinNSnake.exe --help`
+
+Origineel spelletje gemaakt door 
+Alexandre Dantas,
+Contacteer hem op &lt;eu@alexdantas.net&gt;
+Nederlanstalige versie en 
+Windowsversie door Tom Redant.
+Bron Code:
+ https://github.com/tomredant/WinNSnake/</translation>
+    </message>
+    <message>
+        <source>Try `WinNSnake.exe --help`
+
+</source>
+        <translation>Probeer `WinNSnake.exe --help`
+
+</translation>
+    </message>
+    <message>
+        <source>Original Game made by Alexandre Dantas,
+contact him at &lt;eu@alexdantas.net&gt;
+Dutch translation and Windows version by Tom Redant
+
+Source Code:
+ https://github.com/tomredant/WinNSnake/</source>
+        <translation>Origineel spelletje gemaakt door 
+Alexandre Dantas,
+Contacteer hem op &lt;eu@alexdantas.net&gt;
+Nederlanstalige versie en 
+Windowsversie door Tom Redant.
+Bron Code:
+ https://github.com/tomredant/WinNSnake/</translation>
     </message>
 </context>
 </TS>

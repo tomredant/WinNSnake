@@ -1,3 +1,4 @@
+QT       += core gui widgets
 TARGET = WinNSnake
 CONFIG+=console
 TRANSLATIONS+= winnsnake_nl.ts
@@ -74,8 +75,12 @@ INCLUDEPATH += deps/
 SUBDIRS += deps/
 SUBDIRS += src/
 INCLUDEPATH += src/
-INCLUDEPATH += D:/lib/PDCurses/
-LIBS += -LD:/lib/PDCurses/wincon -lpdcurses
+INCLUDEPATH += $$(PDCURSES_ROOT)
+LIBS += -L$$(PDCURSES_ROOT)/wincon -lpdcurses
 
 RESOURCES += \
     winnsnake.qrc
+
+
+INCLUDEPATH +=$$(SHOWLICENSE_ROOT)
+LIBS += -L$$(SHOWLICENSE_ROOT) -lshowlicense

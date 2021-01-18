@@ -19,6 +19,7 @@ public:
 
 private:
 	Window* main;
+    bool m_licenseDialogShown = false;
 	std::vector<Window*> windows;
 };
 

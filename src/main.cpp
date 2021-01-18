@@ -6,18 +6,34 @@
 #include <Config/Arguments.hpp>
 #include <States/GameStateMainMenu.hpp>
 #include <QTranslator>
-#include <QCoreApplication>
+#include <QApplication>
+#include "showlicense.h"
 int main(int argc, char *argv[])
 {
 
-    QCoreApplication a(argc, argv);
+    QApplication a(argc, argv);
     QTranslator *translator = new QTranslator();
     QString language = "nl";
     QString translatorFile =(":/winnsnake_" + language + ".qm");
     translator->load(translatorFile);
     a.installTranslator(translator);
-	try
-	{
+
+    std::vector<std::string> libs;
+    libs.push_back("WinNSnake#" + QObject::tr("Original Game made by Alexandre Dantas,\n"
+                                                                                         "contact him at <eu@alexdantas.net>\n"
+                                                                                         "Dutch translation and Windows version by Tom Redant\n"
+                                                                                         "\n"
+                                                                                         "Source Code:\n"
+                                                                                         " https://github.com/tomredant/WinNSnake/").toStdString() + "#gpl-3.0");
+    libs.push_back("PDCurses##PDCurses");
+    libs.push_back("Qt5.15.3#Source files can be obtained from http://www.qt.io.#lgpl-3.0");
+    libs.push_back("MinGW-W64-builds-4.3.5##MinGW-w64");
+    libs.push_back("libstdc++-6##gpl-3.0_runtime_exception");
+    showLicenseDialog(libs);
+    if(!waitLicenseDialogAccepted())
+        return 0;
+
+    try {
 		// Settings
 		EngineGlobals::init();
 		Globals::init();
@@ -46,7 +62,6 @@ int main(int argc, char *argv[])
 		return 666;
 	}
 
-
-    return a.exec();
+    return 0;
 }
 
